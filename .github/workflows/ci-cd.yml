@@ -6,7 +6,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  TEST_TAG: ${{ REGISTRY }}/${{ IMAGE_NAME }}:test
+  TEST_TAG: ghcr.io/${{ github.repository }}:test
 jobs:
   Build-And-Push-Docker-Image:
     runs-on: ubuntu-latest
