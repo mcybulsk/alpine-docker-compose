@@ -6,10 +6,37 @@ Simply reference the Docker image: `ghcr.io/mcybulsk/alpine-docker-compose:lates
 
 ### Example
 ```shell
-docker run --rm -ti ghcr.io/mcybulsk/alpine-docker-compose:latest sh
+➜  ~ docker run --rm -ti ghcr.io/mcybulsk/alpine-docker-compose:latest sh
+/ # docker -v
+Docker version 26.1.4, build 5650f9b
+/ # docker compose version
+Docker Compose version v2.28.1
+/ # exit
+➜  ~ 
+```
 
-docker -v
-docker compose version
+### More practical example
+In a super simple homelab setup, following can be used for a simple auto-deployment of a `docker-compose.yml` on the same machine where Drone CI is running.
+- `.drone.yml` contents:
+```yml
+kind: pipeline
+type: docker
+name: main-pipeline
 
-exit
+steps:
+  - name: docker-up-all
+    image: ghcr.io/mcybulsk/alpine-docker-compose:latest
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    commands:
+      - docker compose up -d
+    when:
+      branch:
+        - main
+
+volumes:
+  - name: dockersock
+    host:
+      path: /var/run/docker.sock
 ```
