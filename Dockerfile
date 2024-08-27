@@ -1,9 +1,9 @@
 FROM alpine:3.20
 
 # renovate: datasource=github-tags depName=docker/cli
-ENV DOCKER_VERSION="v27.1.1"
+ENV DOCKER_VERSION="v27.2.0"
 # renovate: datasource=github-tags depName=docker/compose
-ENV DOCKER_COMPOSE_VERSION="v2.29.1"
+ENV DOCKER_COMPOSE_VERSION="v2.29.2"
 
 ENV DOCKER_CONFIG="${DOCKER_CONFIG:-$HOME/.docker}"
 
