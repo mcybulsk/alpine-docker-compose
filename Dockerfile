@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 
 # renovate: datasource=github-tags depName=docker/cli
 ENV DOCKER_VERSION="v29.5.3"
